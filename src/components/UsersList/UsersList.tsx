@@ -26,7 +26,7 @@ const UsersList: FC<Props> = (props: Props) => {
             renderItem = { item => (
                 <List.Item>
                     <List.Item.Meta 
-                        title = { <p className='user-list__link' onClick = { () => onUser(item.id) } >{ item.name }</p> }
+                        title = { <p className='user-list__link' onClick = { () => onUser( item.id ) } >{ item.name }</p> }
                         description = { item.email }
                     />
                 </List.Item>
