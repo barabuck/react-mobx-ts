@@ -57,7 +57,6 @@ export default class UserStore implements User {
     async fetchUser( id: string | undefined ) {
         this.setIsLoading( true )
         try {
-            console.log(id)
             const response = await UserService.fetchUser( id )
             this.setUser( response.data )
             this.setIsLoading( false )
