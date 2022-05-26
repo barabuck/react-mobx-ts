@@ -27,15 +27,15 @@ export default class UserStore implements User {
         this.isLoading = bool
     }
 
-    setUsers( users: IUser[]) {
+    setUsers( users: IUser[] ) {
         this.users = users
     }
 
-    setUser( user: IUser) {
+    setUser( user: IUser ) {
         this.user = user
     }
 
-    setError( error: string) {
+    setError( error: string ) {
         this.error = error
     }
 

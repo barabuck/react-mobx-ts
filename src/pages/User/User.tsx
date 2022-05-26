@@ -10,7 +10,7 @@ const User: FC = observer(() => {
     const [ userStore ] = useState( () => new UserStore() )
     const { id } = useParams()
 
-    useEffect( () => { userStore.fetchUser( id ) }, [userStore, id] )
+    useEffect( () => { userStore.fetchUser( id ) }, [ userStore, id ] )
 
     return (
         <>
