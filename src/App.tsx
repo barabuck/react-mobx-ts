@@ -1,17 +1,18 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { privateRoutes, publicRoutes, RoutesNames } from './router'
-import AuthStore from './store/AuthStore'
+
 
 import './App.scss'
+import authStore from './store/AuthStore'
 
 
 const App: FC = observer(() => {
-  const [ authStore ] = useState( () => new AuthStore() )
+  const { auth } = authStore
 
   return (
-    authStore.auth
+    auth
     ?
     <Routes>
         { privateRoutes.map( route => 

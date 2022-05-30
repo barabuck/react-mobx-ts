@@ -1,17 +1,17 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { observer } from "mobx-react"
 import UsersList from '../../components/UsersList/UsersList'
 import { Divider } from 'antd'
-import UserStore from '../../store/UserStore'
+import userStore from '../../store/UserStore'
 
 const Users: FC = observer(() => {
   const navigate = useNavigate()
-  const [ userStore ] = useState( () => new UserStore() )
+  const { users, isLoading, fetchUsers } = userStore
 
   useEffect( () => {
-    userStore.fetchUsers()
-  }, [ userStore ])
+    fetchUsers()
+  }, [ fetchUsers ])
 
   const viewUser = ( id: number ) => {
     navigate( `/user/${id}` )
@@ -21,8 +21,8 @@ const Users: FC = observer(() => {
     <>
       <Divider>Users</Divider>
       <UsersList
-        data = { userStore.users }
-        loading = { userStore.isLoading }
+        data = { users }
+        loading = { isLoading }
         onClick = { viewUser }
       />
     </>
