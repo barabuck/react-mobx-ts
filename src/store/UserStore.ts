@@ -12,7 +12,7 @@ interface User {
     fetchUser(id: string): void
 }
 
-export default class UserStore implements User {
+class UserStore implements User {
     users = [] as IUser[]
     isLoading = true
     error: string = ''
@@ -65,4 +65,8 @@ export default class UserStore implements User {
         }
     }
 
-} 
+}
+
+const userStore = new UserStore()
+
+export default userStore
