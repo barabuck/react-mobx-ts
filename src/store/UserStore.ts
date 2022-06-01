@@ -1,72 +1,75 @@
-import IUser from "../models/IUser"
-import { makeAutoObservable } from "mobx"
-import UserService from "../services/UserService"
+import { makeAutoObservable } from 'mobx';
+import IUser from '../models/IUser';
+import UserService from '../services/UserService';
 
 interface User {
-    users: IUser[]
-    isLoading: boolean
-    error: string
-    user: IUser
-    selectedUser: number
-    fetchUsers(): void
-    fetchUser(id: string): void
+    users: IUser[];
+    isLoading: boolean;
+    error: string;
+    user: IUser;
+    selectedUser: number;
+    fetchUsers(): void;
+    fetchUser(id: string): void;
 }
 
 class UserStore implements User {
-    users = [] as IUser[]
-    isLoading = true
-    error: string = ''
-    user = {} as IUser
-    selectedUser = 0
+    users = [] as IUser[];
+
+    isLoading = true;
+
+    error: string = '';
+
+    user = {} as IUser;
+
+    selectedUser = 0;
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
     }
 
-    setIsLoading( bool: boolean ) {
-        this.isLoading = bool
+    setIsLoading(bool: boolean) {
+        this.isLoading = bool;
     }
 
-    setUsers( users: IUser[] ) {
-        this.users = users
+    setUsers(users: IUser[]) {
+        this.users = users;
     }
 
-    setUser( user: IUser ) {
-        this.user = user
+    setUser(user: IUser) {
+        this.user = user;
     }
 
-    setError( error: string ) {
-        this.error = error
+    setError(error: string) {
+        this.error = error;
     }
 
-    setSelectedUser( id: number ) {
-        this.selectedUser = id
+    setSelectedUser(id: number) {
+        this.selectedUser = id;
     }
 
     async fetchUsers() {
-        this.setIsLoading( true )
+        this.setIsLoading(true);
         try {
-            const response = await UserService.fetchUsers()
-            this.setUsers( response.data )
-            this.setIsLoading( false )
+            const response = await UserService.fetchUsers();
+            this.setUsers(response.data);
+            this.setIsLoading(false);
         } catch (e) {
-            this.setIsLoading( false )
+            this.setIsLoading(false);
         }
     }
 
-    async fetchUser( id: string | undefined ) {
-        this.setIsLoading( true )
+    async fetchUser(id: string | undefined) {
+        this.setIsLoading(true);
         try {
-            const response = await UserService.fetchUser( id )
-            this.setUser( response.data )
-            this.setIsLoading( false )
+            const response = await UserService.fetchUser(id);
+            this.setUser(response.data);
+            this.setIsLoading(false);
         } catch (e) {
-            this.setIsLoading( false )
+            this.setIsLoading(false);
         }
     }
-
 }
 
-const userStore = new UserStore()
+const userStore = new UserStore();
 
-export default userStore
+export default userStore;

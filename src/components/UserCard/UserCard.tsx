@@ -1,28 +1,27 @@
-import React, { FC } from 'react'
-import IUser from '../../models/IUser'
-import Spinner from '../Spinner/Spinner'
+import React, { FC } from 'react';
+import IUser from '../../models/IUser';
+import Spinner from '../Spinner/Spinner';
 
-import './user-card.scss'
+import './user-card.scss';
 
 interface Props {
-  data: IUser | null
-  loading: boolean
+    data: IUser | null;
+    loading: boolean;
 }
 
 const UserCard: FC<Props> = (props: Props) => {
+    const { data, loading } = props;
 
-  return (
-    props.loading
-      ?
-      <Spinner />
-      :
-      <div className='user-card'>
-        <div className='user-card__name'>Name: { props.data?.name }</div>
-        <div className='user-card__name'>Email: { props.data?.email }</div>
-        <div className='user-card__name'>Phone: { props.data?.phone }</div>
-        <div className='user-card__name'>Number: { props.data?.website }</div>
-      </div>
-  )
-}
+    return loading ? (
+        <Spinner />
+    ) : (
+        <div className="user-card">
+            <div className="user-card__name">Name: {data?.name}</div>
+            <div className="user-card__name">Email: {data?.email}</div>
+            <div className="user-card__name">Phone: {data?.phone}</div>
+            <div className="user-card__name">Number: {data?.website}</div>
+        </div>
+    );
+};
 
-export default UserCard
+export default UserCard;
