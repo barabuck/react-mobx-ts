@@ -1,16 +1,16 @@
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable } from 'mobx';
 
 interface Auth {
-    auth: boolean
+    auth: boolean;
 }
 class AuthStore implements Auth {
-    auth = true
+    auth = true;
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
     }
 }
 
-const authStore = new AuthStore()
+const authStore = new AuthStore();
 
-export default authStore
+export default authStore;
